@@ -1,0 +1,90 @@
+#Ejemplo de Algoritmo de ordenamiento de burbuja (Bubble Sort)
+
+def bubble_sort(lista):
+    n = len(lista)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if lista[j] > lista[j + 1]:
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+    return lista
+
+print(bubble_sort([5, 2, 4, 3, 1]))
+
+
+def selection_sort(lista):
+    for i in range(len(lista)):
+        min_idx = i
+        for j in range(i + 1, len(lista)):
+            if lista[j] < lista[min_idx]:
+                min_idx = j
+        lista[i], lista[min_idx] = lista[min_idx], lista[i]
+    return lista
+
+print(selection_sort([29, 10, 14, 37, 13]))
+
+
+#Ejemplo de  Ordenamiento por inserci´on (Insertion Sort)
+
+def insertion_sort(lista):
+    for i in range(1, len(lista)):
+        clave = lista[i]
+        j = i - 1
+        while j >= 0 and clave < lista[j]:
+            lista[j + 1] = lista[j]
+            j -= 1
+        lista[j + 1] = clave
+    return lista
+
+print(insertion_sort([12, 11, 13, 5, 6]))
+
+
+#Ejenplo de B´usqueda Lineal
+def busqueda_lineal(lista, objetivo):
+    for i in range(len(lista)):
+        if lista[i] == objetivo:
+            return i
+    return -1
+
+# Lista de números
+numeros = [4, 7, 10, 15, 18, 23, 29, 34, 40, 45]
+
+# Número que quiero buscar
+numero_a_buscar = 23
+
+# Llamamos a la función de búsqueda
+posicion = busqueda_lineal(numeros, numero_a_buscar)
+
+# Mostramos el resultado
+if posicion != -1:
+    print(f"El número {numero_a_buscar} se encuentra en la posición {posicion}.")
+else:
+    print(f"El número {numero_a_buscar} no se encuentra en la lista.")
+
+
+#Ejemplo de B´usqueda Binaria
+
+def binary_search(lista, objetivo, inicio, fin):
+    if inicio > fin:
+        return -1
+
+    centro = (inicio + fin) // 2
+
+    if lista[centro] == objetivo:
+        return centro
+    elif lista[centro] < objetivo:
+        return binary_search(lista, objetivo, centro + 1, fin)
+    else:
+        return binary_search(lista, objetivo, inicio, centro - 1)
+
+# Ejemplo de uso
+lista = [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 15, 20, 27, 34, 39, 50]
+numero_objetivo = 27
+inicio_busqueda = 0
+fin_busqueda = len(lista) - 1
+
+resultado = binary_search(lista, numero_objetivo, inicio_busqueda, fin_busqueda)
+
+if resultado != -1:
+    print(f"El número {numero_objetivo} se encuentra en la posición {resultado}.")
+else:
+    print(f"El número {numero_objetivo} NO se encuentra en la lista.")
